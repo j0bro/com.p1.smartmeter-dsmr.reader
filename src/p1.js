@@ -142,9 +142,12 @@ function publishToHomey (output) {
     }
 
     for (const homeyHost of homeyHosts) {
+        let payload = JSON.stringify(data)
+        logger.info(payload)
+
         fetch(homeyHost + homeyEndpoint, {
             method: 'post',
-            body: JSON.stringify(data),
+            body: payload,
             headers: {'Content-Type': 'application/json'},
         }).then(() => {
             logger.info('posted successfully to: ' + homeyHost + homeyEndpoint)
